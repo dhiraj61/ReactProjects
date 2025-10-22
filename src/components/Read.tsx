@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { toast } from "react-toastify";
+import { todoContext } from "./Wraper";
 
-const Read = (props) => {
-  const todos = props.todos;
-  const setTodos = props.setTodos;
+const Read = () => {
+  const [todos, setTodos] = useContext(todoContext);
   const deleteHandler = (id) => {
     const filteredTodos = todos.filter((todo) => todo.id != id);
     setTodos(filteredTodos);
+    toast.error("Deleted", { autoClose: 1000 });
   };
   const renderTodos = todos.map((todo) => {
     return (
-      <li className="bg-gray-900 px-8 py-4 flex justify-between mb-2 rounded" key={todo.id}>
+      <li
+        className="bg-gray-900 px-8 py-4 flex justify-between mb-2 rounded"
+        key={todo.id}
+      >
         {todo.title}
         <button
-            className="font-thin text-sm text-red-400"
+          className="font-thin text-sm text-red-400"
           onClick={() => {
             deleteHandler(todo.id);
           }}
@@ -27,7 +32,9 @@ const Read = (props) => {
       <h1 className="text-7xl font-thin">
         <span className="text-pink-400">Pending</span> Todos
       </h1>
-      <ol className="mt-16 h-[31rem] overflow-auto scrollbar-hide">{renderTodos}</ol>
+      <ol className="mt-16 h-[31rem] overflow-auto scrollbar-hide">
+        {renderTodos}
+      </ol>
     </div>
   );
 };

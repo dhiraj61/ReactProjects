@@ -7,10 +7,6 @@ function App() {
   // const [gender, setGender] = useState<string>("male");
   // const [city, setCity] = useState<string>("patna");
 
-  const [todos,setTodos] = useState([
-    {id:1,title:"Kaam Kar le",isCompleted:false}
-  ])  
-
   return (
     <div className="bg-gray-800 w-screen h-screen flex text-white">
       
@@ -59,8 +55,8 @@ function App() {
         </select>
         <br />
         <br /> */}
-       <Create todos = {todos} setTodos = {setTodos}/>
-       <Read todos = {todos} setTodos = {setTodos}/>
+       <Create />
+       <Read />
     </div>
   );
 }
